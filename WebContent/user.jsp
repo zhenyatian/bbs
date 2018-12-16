@@ -8,7 +8,7 @@
 <style type="text/css">
 .title
 {
-	font-size:200%;
+	font-size:300%;
 	font-weight:bold;
 	text-align:center;
 	padding:0;
@@ -89,7 +89,7 @@ div.one_block a:hover,div.one_block a:active
 		conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC",
 				"root", "485769");
 		stmt = conn.createStatement();
-		String sql = "select BlockName from Blocks";
+		String sql = "select BlockName,BlocksNo from Blocks";
 		rst = stmt.executeQuery(sql);
 		%>
 <div class="main">
@@ -97,8 +97,9 @@ div.one_block a:hover,div.one_block a:active
 <%
 		while(rst.next()){
 			String content = rst.getString("BlockName");
+			int BlockNo = rst.getInt("BlocksNo");
 			%>
-			<div class="one_block"><a href="post.jsp"><%=content%></a></div>
+			<div class="one_block"><a href="post.jsp?BlockNo=<%=BlockNo %>&BlockName=<%=content%>"><%=content%></a></div>
 		<%
 		}
 		rst.close();
