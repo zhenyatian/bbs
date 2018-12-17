@@ -80,6 +80,7 @@ div.one_block a:hover,div.one_block a:active
 
 <body>
 <%
+	String UserNo=new String(request.getParameter("UserNo"));
 	java.sql.Connection conn;
 	java.sql.Statement stmt;
 	java.sql.ResultSet rst;
@@ -87,7 +88,7 @@ div.one_block a:hover,div.one_block a:active
 	try {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC",
-				"root", "485769");
+				"root", "Tzy794920512");
 		stmt = conn.createStatement();
 		String sql = "select BlockName,BlocksNo from Blocks";
 		rst = stmt.executeQuery(sql);
@@ -115,11 +116,10 @@ div.one_block a:hover,div.one_block a:active
 <ul>
 	<!-- <li><a href="block.jsp">板块</a></li> -->
 	<li><a href="user_info.jsp">个人信息</a></li>
-	<li><a href="manage_block.jsp">管理板块</a></li>
 	<li><a href="query_user.jsp">查询用户</a></li>
+	<li><a href="manage_block.jsp">管理板块</a></li>
 	<li><a href="welcome.jsp">登出</a></li>
 </ul>
 </div>
 </body>
 </html>
-	

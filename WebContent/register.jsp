@@ -15,7 +15,6 @@
 		String birthday = new String(request.getParameter("birthday"));
 		String password = new String(request.getParameter("password"));
 		String email = new String(request.getParameter("email"));
-
 		if (username.equals("") || username == null || gender.equals("") || gender == null || birthday.equals("") || birthday == null || password.equals("") || password == null
 				|| email.equals("") || email == null) {
 	%>
@@ -25,14 +24,13 @@
 	</script>
 	<%
 		}
-
 		java.sql.Connection conn;
 		java.sql.PreparedStatement stmt;
 		java.sql.ResultSet rst;
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC",
-					"root", "485769");
+					"root", "Tzy794920512");
 			java.util.Calendar calendar = Calendar.getInstance();
 			int year = calendar.get(Calendar.YEAR);
 			int month = calendar.get(Calendar.MONTH) + 1;
@@ -47,13 +45,13 @@
 			rst = stmt.getGeneratedKeys();
 			rst.next();
 			out.println("注册成功！您的账号是：" + rst.getObject(1));
+			rst.close();
+			stmt.close();
+			conn.close();
 	%>
 	<br>
 	<a href="welcome.jsp">登录</a>
 	<%
-			rst.close();
-			stmt.close();
-			conn.close();
 		} catch (java.sql.SQLException e) {
 			out.println(e.toString());
 		}
